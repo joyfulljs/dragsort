@@ -1,0 +1,25 @@
+.dragsort__item {
+  position: relative;
+}
+
+.dragsort--start {
+  position: relative;
+  box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  transition: none !important;
+}
+
+.dragsort__handle {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  height: 100%;
+  right: 30px;
+  transform: translateY(-50%);
+  align-items: center;
+  z-index: 2;
+}
+
+.dragsort__handle span {
+  padding-top: 2px;
+}

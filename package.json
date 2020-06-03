@@ -1,0 +1,38 @@
+{
+  "name": "@joyfulljs/dragsort",
+  "version": "1.0.0",
+  "description": "drag to sort",
+  "main": "index.js",
+  "module": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joyfulljs/dragsort.git"
+  },
+  "keywords": [
+    "drag",
+    "sort"
+  ],
+  "author": "elvin zhu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joyfulljs/dragsort/issues"
+  },
+  "homepage": "https://github.com/joyfulljs/dragsort#readme",
+  "devDependencies": {
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "typescript": "^3.9.3"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6"
+  }
+}

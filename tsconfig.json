@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "sourceMap": false,
+    "noImplicitAny": true,
+    "removeComments": false,
+    "module": "ES6",
+    "target": "ES5",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    // "declarationDir": "./",
+    "lib": [
+      "ES2015",
+      "DOM"
+    ]
+  },
+  "files": [
+    "./src/index.tsx"
+  ]
+}
