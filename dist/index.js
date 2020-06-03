@@ -1,4 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Hello } from './components/Hello';
-ReactDOM.render(React.createElement(Hello, { compiler: 'TypeScript', framework: 'React' }), document.getElementById('example'));
+import DragSort from './components/DragSort';
+import DragSortHandle from './components/Handle';
+export default DragSort;
+export { DragSortHandle };
