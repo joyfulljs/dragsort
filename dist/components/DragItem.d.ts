@@ -1,9 +1,10 @@
 import React from 'react';
 interface PropTypes {
+    className?: string;
+    style?: React.CSSProperties;
     items: any[];
     handle: React.ReactNode;
     index: number;
-    className?: string;
     onChange: (e: any[]) => void;
 }
 export default class DragItem extends React.Component<PropTypes, {}> {

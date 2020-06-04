@@ -1,10 +1,11 @@
 import React from 'react';
-
+import cns from 'classnames';
 interface PropTypes {
+  className?: string;
+  style?: React.CSSProperties;
   items: any[];
   handle: React.ReactNode;
   index: number;
-  className?: string;
   onChange: (e: any[]) => void;
 }
 
@@ -22,12 +23,12 @@ export default class DragItem extends React.Component<PropTypes, {}>{
   private __dragItems: HTMLElement[];
 
   onStart = (e: TouchEvent) => {
-    this.__dragIndex = this.props.index;
-    this.__dragTargetIndex = this.props.index;
     this.__dragStartY = e.touches[0].pageY;
     this.__dragTarget = this.domRef.current;
     this.__dragItemHeight = this.__dragTarget.offsetHeight;
     this.__dragItems = Array.prototype.slice.call(this.__dragTarget.parentNode.querySelectorAll('.dragsort__item'), 0);
+    this.__dragIndex = this.__dragItems.findIndex(item => item === this.__dragTarget);
+    this.__dragTargetIndex = this.__dragIndex;
     this.__dragItems.forEach((item) => setTransition(item, true));
     this.setState({
       dragStarted: true,
@@ -38,7 +39,7 @@ export default class DragItem extends React.Component<PropTypes, {}>{
     if (this.state.dragStarted) {
       const currentY = e.touches[0].pageY;
       const deltY = currentY - this.__dragStartY;
-      let targetIndex = Math.round(this.props.index + deltY / this.__dragItemHeight);
+      let targetIndex = Math.round(this.__dragIndex + deltY / this.__dragItemHeight);
       if (targetIndex <= 0) {
         targetIndex = 0;
       } else if (targetIndex > this.props.items.length - 1) {
@@ -93,12 +94,14 @@ export default class DragItem extends React.Component<PropTypes, {}>{
   }
 
   render() {
-    const { children, className } = this.props;
+    const { children, className, style } = this.props;
     const { dragStarted } = this.state;
     return (
       <div ref={this.domRef} className={
-        `dragsort__item ${dragStarted ? 'dragsort--start' : ''} ${className || ''}`
-      }>
+        cns('dragsort__item',
+          { 'dragsort--start': dragStarted },
+          className)
+      } style={style}>
         {children}
       </div>
     );

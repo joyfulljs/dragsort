@@ -27,14 +27,13 @@ export default class PageDemo extends React.Component {
 
   render() {
     const { list } = this.state;
-    console.log(list);
     return (
       <div>
         {list.map((item, index) => {
           return (
-            <DragItem key={index} index={index} items={list} onChange={this.handeSortChange}>
+            <DragItem key={index} items={list} onChange={this.handeSortChange}>
               {item.label}
-              <DragHandle></DragHandle>
+              <DragHandle />
             </DragItem>
           );
         })}

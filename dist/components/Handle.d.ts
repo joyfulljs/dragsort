@@ -1,4 +1,5 @@
-import { PropsWithChildren } from 'react';
-export default function DragHandle(props: PropsWithChildren<{}> & {
+import React, { PropsWithChildren } from 'react';
+export default function DragHandle(props: PropsWithChildren<{
     className?: string;
-}): JSX.Element;
+    style?: React.CSSProperties;
+}>): JSX.Element;
