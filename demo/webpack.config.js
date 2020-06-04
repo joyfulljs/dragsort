@@ -6,10 +6,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const template = path.join(process.cwd(), 'public/index.html');
+const externals = {
+  react: 'window.React',
+  'react-dom': 'window.ReactDOM',
+};
 
 module.exports = {
-  mode: 'development',
-  devtool: 'cheap-source-map',
+  mode: process.env.NODE_ENV,
+  externals,
+  devtool: 'none',
   entry: {
     app: path.join(__dirname, 'src/app.jsx'),
   },
