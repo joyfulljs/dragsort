@@ -3,17 +3,18 @@ import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
 const BannerStr = `<%= pkg.name %> v<%= pkg.version %>
-(c) 2014-${new Date().getFullYear()} by <%= pkg.author %>
-Released under the MIT License.`;
+(c) 2014-${new Date().getFullYear()} by <%= pkg.author %> 
+Released under the MIT License.
+https://github.com/joyfulljs/dragsort`;
 
 export default [
   {
     input: 'dist/index.js',
     output: [
       {
-        file: 'dist/xtouch.min.js',
+        file: 'dist/dragsort.min.js',
         format: 'umd',
-        name: 'XTouch',
+        name: 'DragSort',
         plugins: [
           terser({
             output: {

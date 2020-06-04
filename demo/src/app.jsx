@@ -1,4 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render(<h1>welcome</h1>, document.getElementById('root'));
+import PageDemo from './pages/demo.jsx';
+
+ReactDOM.render(<PageDemo />, document.getElementById('root'));

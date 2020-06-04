@@ -1,11 +1,12 @@
 import React from 'react';
 interface PropTypes {
-    list: any[];
+    items: any[];
     handle: React.ReactNode;
     index: number;
+    className?: string;
     onChange: (e: any[]) => void;
 }
-export default class DragSort extends React.Component<PropTypes, {}> {
+export default class DragItem extends React.Component<PropTypes, {}> {
     state: {
         dragStarted: boolean;
     };

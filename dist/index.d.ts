@@ -1,4 +1,4 @@
-import DragSort from './components/DragSort';
-import DragSortHandle from './components/Handle';
-export default DragSort;
-export { DragSortHandle };
+import DragItem from './components/DragItem';
+import DragHandle from './components/Handle';
+export default DragItem;
+export { DragHandle };

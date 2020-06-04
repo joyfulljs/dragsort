@@ -2,13 +2,16 @@
   "name": "@joyfulljs/dragsort",
   "version": "1.0.0",
   "description": "drag to sort",
-  "main": "index.js",
-  "module": "dist/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && npm link && cd demo && npm link @joyfulljs/dragsort && npm start"
   },
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src/index.css"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joyfulljs/dragsort.git"
@@ -26,13 +29,13 @@
   "devDependencies": {
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "rollup": "^2.13.0",
+    "rollup-plugin-banner": "^0.2.1",
+    "rollup-plugin-terser": "^6.1.0",
     "typescript": "^3.9.3"
   },
-  "peerDependencies": {
+  "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
-  },
-  "dependencies": {
-    "classnames": "^2.2.6"
   }
 }

@@ -1,6 +1,37 @@
-.dragsort--start {
+.dragsort__item {
   position: relative;
+  padding-right: 30px;
+}
+
+.dragsort--start {
   box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.2);
   z-index: 10;
   transition: none !important;
+}
+
+.dragsort__handle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  right: 15px;
+  top: 50%;
+  margin-top: -10px;
+}
+
+.dragsort__handle::before,
+.dragsort__handle::after {
+  content: '';
+  display: block;
+  border-top: solid 1px currentColor;
+}
+
+.dragsort__handle::after {
+  margin-top: 5px;
+  height: 5px;
+  border-bottom: solid 1px currentColor;
+}
+
+.dragsort__handle--custom::after,
+.dragsort__handle--custom::before {
+  display: none;
 }

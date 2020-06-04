@@ -1,13 +1,14 @@
 import React from 'react';
 
 interface PropTypes {
-  list: any[],
-  handle: React.ReactNode,
-  index: number,
-  onChange: (e: any[]) => void
+  items: any[];
+  handle: React.ReactNode;
+  index: number;
+  className?: string;
+  onChange: (e: any[]) => void;
 }
 
-export default class DragSort extends React.Component<PropTypes, {}>{
+export default class DragItem extends React.Component<PropTypes, {}>{
 
   state = { dragStarted: false };
 
@@ -31,7 +32,6 @@ export default class DragSort extends React.Component<PropTypes, {}>{
     this.setState({
       dragStarted: true,
     });
-    e.stopPropagation();
   };
 
   onMove = (e: TouchEvent) => {
@@ -41,8 +41,8 @@ export default class DragSort extends React.Component<PropTypes, {}>{
       let targetIndex = Math.round(this.props.index + deltY / this.__dragItemHeight);
       if (targetIndex <= 0) {
         targetIndex = 0;
-      } else if (targetIndex > this.props.list.length - 1) {
-        targetIndex = this.props.list.length - 1;
+      } else if (targetIndex > this.props.items.length - 1) {
+        targetIndex = this.props.items.length - 1;
       }
       if (targetIndex !== this.__dragTargetIndex) {
         if (targetIndex > this.__dragTargetIndex) {
@@ -59,15 +59,14 @@ export default class DragSort extends React.Component<PropTypes, {}>{
       this.__dragTargetIndex = targetIndex;
       setTransform(this.__dragTarget, deltY);
       e.preventDefault();
-      e.stopPropagation();
     }
   };
 
   onEnd = (e: TouchEvent) => {
     if (this.state.dragStarted) {
       if (this.__dragTargetIndex !== this.__dragIndex) {
-        const { onChange, list } = this.props;
-        const newList = list.slice(0);
+        const { onChange, items } = this.props;
+        const newList = items.slice(0);
         const dragItem = newList.splice(this.__dragIndex, 1);
         newList.splice(this.__dragTargetIndex, 0, dragItem[0]);
         onChange(newList);
@@ -77,7 +76,6 @@ export default class DragSort extends React.Component<PropTypes, {}>{
         setTransform(item, 0);
       });
       this.setState({ dragStarted: false });
-      e.stopPropagation();
     }
   };
 
@@ -95,10 +93,12 @@ export default class DragSort extends React.Component<PropTypes, {}>{
   }
 
   render() {
-    const { children } = this.props;
+    const { children, className } = this.props;
     const { dragStarted } = this.state;
     return (
-      <div ref={this.domRef} className={`dragsort__item${dragStarted ? ' dragsort--start' : ''}`}>
+      <div ref={this.domRef} className={
+        `dragsort__item ${dragStarted ? 'dragsort--start' : ''} ${className || ''}`
+      }>
         {children}
       </div>
     );

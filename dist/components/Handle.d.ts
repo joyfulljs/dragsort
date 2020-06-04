@@ -1,2 +1,4 @@
 import { PropsWithChildren } from 'react';
-export default function DragSortHandle(props: PropsWithChildren<{}>): JSX.Element;
+export default function DragHandle(props: PropsWithChildren<{}> & {
+    className?: string;
+}): JSX.Element;

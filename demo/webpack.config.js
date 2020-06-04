@@ -35,10 +35,22 @@ module.exports = {
         use: ['cache-loader', 'babel-loader'],
       },
       {
-        test: /\.(css|less)$/,
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.less$/,
         exclude: /node_modules/,
         use: [
-          'style-loade',
+          'style-loader',
           {
             loader: 'css-loader',
             options: {

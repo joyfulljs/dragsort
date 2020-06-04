@@ -1,4 +1,5 @@
 import React from 'react';
-export default function DragSortHandle(props) {
-    return (React.createElement("div", { className: "dragsort__handle" }, props.children));
+export default function DragHandle(props) {
+    const { className, children } = props;
+    return (React.createElement("div", { className: `dragsort__handle ${children ? 'dragsort__handle--custom' : ''} ${className || ''}` }, children));
 }

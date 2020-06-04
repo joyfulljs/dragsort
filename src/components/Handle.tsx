@@ -1,9 +1,12 @@
 import React, { PropsWithChildren } from 'react';
 
-export default function DragSortHandle(props: PropsWithChildren<{}>) {
+export default function DragHandle(props: PropsWithChildren<{}> & { className?: string }) {
+  const { className, children } = props;
   return (
-    <div className="dragsort__handle">
-      {props.children}
+    <div className={
+      `dragsort__handle ${children ? 'dragsort__handle--custom' : ''} ${className || ''}`
+    }>
+      {children}
     </div>
   )
 } 
