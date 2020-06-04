@@ -11,9 +11,10 @@ const externals = {
   'react-dom': 'window.ReactDOM',
 };
 
+const publicPath = '/dragsort/demo/dist';
 module.exports = {
   mode: process.env.NODE_ENV,
-  externals,
+  // externals,
   devtool: 'none',
   entry: {
     app: path.join(__dirname, 'src/app.jsx'),
@@ -21,11 +22,11 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/',
+    publicPath,
   },
   devServer: {
     disableHostCheck: true,
-    publicPath: '/',
+    publicPath,
     contentBase: path.join(process.cwd(), 'dist'),
     hot: true,
     port: 8080,

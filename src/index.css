@@ -29,7 +29,7 @@
 .dragsort__handle::after {
   content: '';
   display: block;
-  width: 14px;
+  width: 18px;
   border-top: solid 1px currentColor;
 }
 

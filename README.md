@@ -1,6 +1,5 @@
 # dragsort
-
-drag to sort
+drag to sort. support both pc and mobile
 
 # installation
 
@@ -12,6 +11,7 @@ npm install @joyfulljs/dragsort
 
 ```js
 import DragItem, { DragHandle } from '@joyfulljs/dragsort';
+import '@joyfulljs/dragsort/src/index.css';
 
 // ...
 handeSortChange = (list) => {

@@ -1,5 +1,7 @@
 import React from 'react';
 import cns from 'classnames';
+import XTouch from '@joyfulljs/xtouch';
+
 interface PropTypes {
   className?: string;
   style?: React.CSSProperties;
@@ -14,6 +16,7 @@ export default class DragItem extends React.Component<PropTypes, {}>{
   state = { dragStarted: false };
 
   private domRef = React.createRef<HTMLDivElement>();
+  private unbind: () => void;
   private __dragIndex: number;
   private __dragTargetIndex: number;
   private __dragStartY: number;
@@ -81,16 +84,17 @@ export default class DragItem extends React.Component<PropTypes, {}>{
   };
 
   componentDidMount() {
-    window.addEventListener('touchend', this.onEnd);
-    window.addEventListener('touchmove', this.onMove, { passive: false });
     this.__dragHandle = this.domRef.current.querySelector('.dragsort__handle') || this.domRef.current;
-    this.__dragHandle.addEventListener('touchstart', this.onStart);
+    this.unbind = XTouch(this.__dragHandle as HTMLElement, {
+      onStart: this.onStart,
+      onMove: this.onMove,
+      onEnd: this.onEnd,
+      capture: { passive: false }
+    })
   }
 
   componentWillUnmount() {
-    window.removeEventListener('touchend', this.onEnd);
-    window.removeEventListener('touchmove', this.onMove);
-    this.__dragHandle.removeEventListener('touchstart', this.onStart);
+    this.unbind();
   }
 
   render() {

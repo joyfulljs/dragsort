@@ -12,6 +12,7 @@ export default class DragItem extends React.Component<PropTypes, {}> {
         dragStarted: boolean;
     };
     private domRef;
+    private unbind;
     private __dragIndex;
     private __dragTargetIndex;
     private __dragStartY;

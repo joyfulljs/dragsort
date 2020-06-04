@@ -1,5 +1,6 @@
 import React from 'react';
 import cns from 'classnames';
+import XTouch from '@joyfulljs/xtouch';
 export default class DragItem extends React.Component {
     constructor() {
         super(...arguments);
@@ -64,15 +65,16 @@ export default class DragItem extends React.Component {
         };
     }
     componentDidMount() {
-        window.addEventListener('touchend', this.onEnd);
-        window.addEventListener('touchmove', this.onMove, { passive: false });
         this.__dragHandle = this.domRef.current.querySelector('.dragsort__handle') || this.domRef.current;
-        this.__dragHandle.addEventListener('touchstart', this.onStart);
+        this.unbind = XTouch(this.__dragHandle, {
+            onStart: this.onStart,
+            onMove: this.onMove,
+            onEnd: this.onEnd,
+            capture: { passive: false }
+        });
     }
     componentWillUnmount() {
-        window.removeEventListener('touchend', this.onEnd);
-        window.removeEventListener('touchmove', this.onMove);
-        this.__dragHandle.removeEventListener('touchstart', this.onStart);
+        this.unbind();
     }
     render() {
         const { children, className, style } = this.props;
