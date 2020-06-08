@@ -36,10 +36,12 @@
     "rollup-plugin-terser": "^6.1.0",
     "typescript": "^3.9.3"
   },
-  "dependencies": {
-    "@joyfulljs/xtouch": "^1.0.4",
-    "classnames": "^2.2.6",
+  "peerDependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "dependencies": {
+    "@joyfulljs/xtouch": "^1.0.4",
+    "classnames": "^2.2.6"
   }
 }
