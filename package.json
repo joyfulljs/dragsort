@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && npm link && cd demo && npm link @joyfulljs/dragsort && npm start"
+    "start": "npm run build && npm link && cd demo && npm link @joyfulljs/dragsort && npm start",
+    "release": "npm run build && cd demo && npm run build && cd ../ && git add . && git commit -m \"build\" && git push"
   },
   "typings": "dist/index.d.ts",
   "files": [
