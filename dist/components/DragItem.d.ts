@@ -23,6 +23,7 @@ export default class DragItem extends React.Component<PropTypes, {}> {
     onStart: (e: TouchEvent) => void;
     onMove: (e: TouchEvent) => void;
     onEnd: (e: TouchEvent) => void;
+    moveItem(targetIndex: number): void;
     componentDidMount(): void;
     componentWillUnmount(): void;
     render(): JSX.Element;

@@ -30,19 +30,25 @@ export default class DragItem extends React.Component {
                     targetIndex = this.props.items.length - 1;
                 }
                 if (targetIndex !== this.__dragTargetIndex) {
-                    if (targetIndex > this.__dragTargetIndex) {
-                        // 向下拖动
-                        setDeltTransform(this.__dragItems[targetIndex], -this.__dragItemHeight);
+                    let deltIndex = targetIndex - this.__dragTargetIndex;
+                    if (deltIndex > 1) {
+                        // 向下移动过快
+                        do {
+                            this.moveItem(this.__dragTargetIndex + 1);
+                            deltIndex--;
+                        } while (deltIndex);
+                    }
+                    else if (deltIndex < -1) {
+                        // 向上移动过快
+                        do {
+                            this.moveItem(this.__dragTargetIndex - 1);
+                            deltIndex++;
+                        } while (deltIndex);
                     }
                     else {
-                        // 向上拖动
-                        setDeltTransform(this.__dragItems[targetIndex], this.__dragItemHeight);
+                        this.moveItem(targetIndex);
                     }
-                    const temp = this.__dragItems[targetIndex];
-                    this.__dragItems[targetIndex] = this.__dragItems[this.__dragTargetIndex];
-                    this.__dragItems[this.__dragTargetIndex] = temp;
                 }
-                this.__dragTargetIndex = targetIndex;
                 setTransform(this.__dragTarget, deltY);
                 e.preventDefault();
             }
@@ -63,6 +69,20 @@ export default class DragItem extends React.Component {
                 this.setState({ dragStarted: false });
             }
         };
+    }
+    moveItem(targetIndex) {
+        if (targetIndex > this.__dragTargetIndex) {
+            // 向下拖动
+            setDeltTransform(this.__dragItems[targetIndex], -this.__dragItemHeight);
+        }
+        else {
+            // 向上拖动
+            setDeltTransform(this.__dragItems[targetIndex], this.__dragItemHeight);
+        }
+        const temp = this.__dragItems[targetIndex];
+        this.__dragItems[targetIndex] = this.__dragItems[this.__dragTargetIndex];
+        this.__dragItems[this.__dragTargetIndex] = temp;
+        this.__dragTargetIndex = targetIndex;
     }
     componentDidMount() {
         this.__dragHandle = this.domRef.current.querySelector('.dragsort__handle') || this.domRef.current;
